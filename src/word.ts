@@ -29,3 +29,9 @@ export function wordWithoutBrackets(word: string) {
 	if (!result) return;
 	return result[1];
 }
+
+export function getOpCodeFromLine(line: string) {
+	const firstWord = line.split(" ")[0];
+
+	return firstWord.slice(1);
+}

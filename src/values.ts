@@ -8,9 +8,10 @@ export function isValue(str: string) {
 	return str in values;
 }
 
-export function valueDocumentation(value: string, forOpCode?: string) {
+export function valueDocumentation(value: string, forOpCode: string) {
 	const data = values[value];
 	if (typeof data === "string") return data;
-	if (!forOpCode) return data.Default as string;
-	return data[forOpCode] as string;
+	const docsForOpCode = data[forOpCode] as string | undefined;
+	if (!docsForOpCode) return data.Default as string;
+	return docsForOpCode;
 }
