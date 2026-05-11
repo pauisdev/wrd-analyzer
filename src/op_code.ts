@@ -45,4 +45,9 @@ type Value =
 	| {
 			Description: string;
 			Items: string[];
+	  }
+	| {
+			Type: "string" | "number" | "any";
+			Description: string;
+			Items: string[];
 	  };
