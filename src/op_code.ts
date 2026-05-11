@@ -31,10 +31,14 @@ function formatArgs(opCode: string) {
 export function extractArgs(opCode: string) {
 	return Object.entries(opCodes[opCode])
 		.filter(([key, _value]) => key !== "Description")
-		.map(([key, value]) => {
+		.map(([_key, value]) => {
 			const v = value as Value;
 			return v;
 		});
+}
+
+export function getOpCodes() {
+	return Object.entries(opCodes).map(([key, _value]) => key);
 }
 
 type Value =
