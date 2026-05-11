@@ -1,4 +1,7 @@
 import * as vscode from "vscode";
+import { documentToLines } from "../document";
+import { extractArgs } from "../op_code";
+import { cursorPositionToWordIndex, wordWithoutBrackets } from "../word";
 
 export default (
 	document: vscode.TextDocument,
@@ -6,12 +9,22 @@ export default (
 ): vscode.ProviderResult<
 	vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>
 > => {
-	return {
-		items: [
-			new vscode.CompletionItem("Example"),
-			new vscode.CompletionItem("Another option"),
-			new vscode.CompletionItem("AAA"),
-		],
-		isIncomplete: true,
-	};
+	const lines = documentToLines(document);
+	const line = lines[position.line].split(" ");
+	const wordIndex = cursorPositionToWordIndex(line, position.character);
+	if (!wordIndex) return;
+
+	const opCode = wordWithoutBrackets(line[0]);
+	if (!opCode) return;
+	const args = extractArgs(opCode);
+	const argsForCurrentWord = args[wordIndex - 1];
+	if ("Items" in argsForCurrentWord) {
+		return {
+			items: argsForCurrentWord.Items.map(
+				(item) => new vscode.CompletionItem(item),
+			),
+			isIncomplete: false,
+		};
+	}
+	return;
 };

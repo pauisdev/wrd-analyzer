@@ -28,6 +28,15 @@ function formatArgs(opCode: string) {
 		});
 }
 
+export function extractArgs(opCode: string) {
+	return Object.entries(opCodes[opCode])
+		.filter(([key, _value]) => key !== "Description")
+		.map(([key, value]) => {
+			const v = value as Value;
+			return v;
+		});
+}
+
 type Value =
 	| {
 			Type: "string" | "number" | "any";
