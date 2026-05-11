@@ -1,0 +1,346 @@
+FLG:
+  Description: Set Flag
+  Arg1: string
+  Arg2: string
+IFF:
+  Description: If Flag
+  Arg1: string
+  Arg2: string
+  Arg3: string
+WAK:
+  Description: Work ("waaku") (Seems to be used to configure game engine parameters)
+  Arg1: string
+  Arg2: string
+  Arg3: string
+IFW:
+  Description: If WAK
+  Arg1: string
+  Arg2: string
+  Arg3: string
+SWI:
+  Description: Begin switch statement
+  Arg1: string
+CAS:
+  Description: Switch Case
+  Arg1: number
+MPF:
+  Description: Map Flag?
+  Arg1: string
+  Arg2: string
+  Arg3: string
+SPW:
+  Description: ''
+MOD:
+  Description: Set Modifier (Also used to configure game engine parameters)
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+HUM:
+  Description: Human? Seems to be used to initialize "interactable" objects in a map?
+  Arg1: string
+CHK:
+  Description: Adds a Truth Bullet to the list of usable evidence during a non-stop debate.
+  Arg1: string
+KTD:
+  Description: Kotodama?
+  Arg1: string
+  Arg2: string
+CLR:
+  Description: Clear?
+RET:
+  Description: 'Return? There''s another command later which is definitely return, though...'
+KNM:
+  Description: Kinematics (camera movement)
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+  Arg5: string
+CAP:
+  Description: Camera Parameters?
+FIL:
+  Description: Load Script File & jump to label
+  Arg1: string
+  Arg2: string
+END:
+  Description: End of script or switch case
+SUB:
+  Description: Jump to subroutine
+  Arg1: string
+  Arg2: string
+RTN:
+  Description: Return (called inside subroutine)
+LAB:
+  Description: Label name
+  Arg1: string
+JMP:
+  Description: Jump to label
+  Arg1: string
+MOV:
+  Description: Movie
+  Arg1: string
+  Arg2: string
+FLS:
+  Description: Flash
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+FLM:
+  Description: Flash Modifier?
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+  Arg5: string
+  Arg6: string
+VOI:
+  Description: Play voice clip
+  Arg1: string
+  Arg2: string
+BGM:
+  Description: Play BGM
+  Arg1: string
+  Arg2: string
+  Arg3: string
+SE:
+  Description: Play sound effect
+  Arg1: string
+  Arg2: string
+JIN:
+  Description: Play jingle
+  Arg1: string
+  Arg2: string
+CHN:
+  Description: Set active character name (current name above the dialogue box)
+  Arg1: string
+VIB:
+  Description: Camera Vibration
+  Arg1: string
+  Arg2: string
+  Arg3: string
+FDS:
+  Description: Fade Screen
+  Arg1: string
+  Arg2: string
+  Arg3: string
+FLA:
+  Description: ''
+LIG:
+  Description: Lighting Parameters
+  Arg1: string
+  Arg2: number
+  Arg3: string
+CHR:
+  Description: Character Parameters
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+  Arg5: string
+BGD:
+  Description: Background Parameters
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+CUT:
+  Description: 'Cut-in (display image for things like Truth Bullets, etc.)'
+  Arg1: string
+  Arg2: string
+ADF:
+  Description: Character Vibration?
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+  Arg5: string
+PAL:
+  Description: ''
+MAP:
+  Description: Load Map
+  Arg1: string
+  Arg2: string
+  Arg3: string
+OBJ:
+  Description: Load Object
+  Arg1: string
+  Arg2: string
+  Arg3: string
+BUL:
+  Description: Seems to be related to some kind of screen effect?
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+  Arg5: string
+  Arg6: string
+  Arg7: string
+  Arg8: string
+CRF:
+  Description: Cross Fade
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+  Arg5: string
+  Arg6: string
+  Arg7: string
+CAM:
+  Description: Camera command
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+  Arg5: string
+KWM:
+  Description: Game/UI Mode
+  Arg1: string
+ARE:
+  Description: ''
+  Arg1: string
+  Arg2: string
+  Arg3: string
+KEY:
+  Description: Enable/disable "key" items for unlocking areas
+  Arg1: string
+  Arg2: string
+WIN:
+  Description: Window parameters
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+MSC:
+  Description: ''
+CSM:
+  Description: ''
+PST:
+  Description: Post-Processing
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+  Arg5: string
+KNS:
+  Description: Kinematics Numeric parameters?
+  Arg1: string
+  Arg2: number
+  Arg3: string
+  Arg4: string
+  Arg5: string
+FON:
+  Description: Set Font
+  Arg1: number
+  Arg2: string
+BGO:
+  Description: Load Background Object
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+  Arg5: string
+LOG:
+  Description: Add next text to log (only used in class trials during nonstop debates)
+SPT:
+  Description: Used only in Class Trial? Always set to "non"?
+  Arg1: string
+CDV:
+  Description: ''
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+  Arg5: string
+  Arg6: string
+  Arg7: string
+  Arg8: string
+  Arg9: string
+  Arg10: string
+SZM:
+  Description: >-
+    Stand Position (Class Trial) (posX, posY, speed) (can be negative and
+    floats)
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+PVI:
+  Description: Class Trial Chapter? Pre-trial intermission?
+  Arg1: string
+EXP:
+  Description: Give EXP
+  Arg1: string
+MTA:
+  Description: Used only in Class Trial? Usually set to "non"?
+  Arg1: string
+MVP:
+  Description: Move object to its designated position?
+  Arg1: string
+  Arg2: string
+  Arg3: string
+POS:
+  Description: Object/Exisal position
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+  Arg5: string
+ICO:
+  Description: Display a Program World character portrait
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+EAI:
+  Description: Exisal AI
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+  Arg5: string
+  Arg6: string
+  Arg7: string
+  Arg8: string
+  Arg9: string
+  Arg10: string
+COL:
+  Description: Set object collision
+  Arg1: string
+  Arg2: string
+  Arg3: string
+CFP:
+  Description: Camera Follow Path? Seems to make the camera move in some way
+  Arg1: string
+  Arg2: string
+  Arg3: string
+  Arg4: string
+  Arg5: string
+  Arg6: string
+  Arg7: string
+  Arg8: string
+  Arg9: string
+CLT:
+  Description: Text modifier command
+  Arg1: string
+R:
+  Description: ''
+PAD:
+  Description: Insert gamepad button symbol into dialogue text
+  Arg1: string
+LOC:
+  Description: Display dialogue string in dialogue box
+  Arg1: string
+BTN:
+  Description: Wait for player's button press
+ENT:
+  Description: ''
+CED:
+  Description: Check End (Used after IFF and IFW commands)
+LBN:
+  Description: Local Branch Number (for branching case statements)
+  Arg1: number
+JMN:
+  Description: Jump to Local Branch (for branching case statements)
+  Arg1: number
