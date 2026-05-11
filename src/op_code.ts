@@ -20,11 +20,20 @@ function formatArgs(opCode: string) {
 	return Object.entries(opCodes[opCode])
 		.filter(([key, _value]) => key !== "Description")
 		.map(([key, value]) => {
-			return `*@${key}*: \`${(value as Value).Type}\` — ${(value as Value).Description}`;
+			const v = value as Value;
+			if ("Type" in v) {
+				return `*@${key}*: \`${v.Type}\` — ${v.Description}`;
+			}
+			return `*@${key}*: \`${v.Items.join(" | ")}\` — ${v.Description}`;
 		});
 }
 
-type Value = {
-	Type: "string" | "number" | "any";
-	Description: string;
-};
+type Value =
+	| {
+			Type: "string" | "number" | "any";
+			Description: string;
+	  }
+	| {
+			Description: string;
+			Items: string[];
+	  };
