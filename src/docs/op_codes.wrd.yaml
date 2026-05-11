@@ -228,7 +228,10 @@ CHN:
   Description: Set active character name (current name above the dialogue box)
   Arg1:
     Description: Description for Arg1
-    Type: string
+    Items:
+    - C000_Saiha
+    - C013_Yonag
+    - chara_Hatena
 VIB:
   Description: Camera Vibration
   Arg1:
