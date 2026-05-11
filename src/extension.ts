@@ -1,5 +1,7 @@
 import * as vscode from "vscode";
 
+const fileExtension = "_wrdExport.txt";
+
 export function activate(context: vscode.ExtensionContext) {
 	vscode.window.showInformationMessage("WRD Analyzer started!");
 
@@ -7,6 +9,7 @@ export function activate(context: vscode.ExtensionContext) {
 		"plaintext",
 		{
 			provideDefinition(document, position, _token) {
+				if (!document.fileName.endsWith(fileExtension)) return;
 				const lines = document
 					.getText()
 					.split("\n")
@@ -18,7 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
 				const definitionToSearch = `<LBN ${id}>`;
 				const definitionLine = lines.indexOf(definitionToSearch);
 				if (definitionLine === -1) {
-					vscode.window.showErrorMessage(`Label id ${id} not found.`);
+					vscode.window.showErrorMessage(`LBN id ${id} not found.`);
 					return;
 				}
 				const definitionLength = definitionToSearch.length;
