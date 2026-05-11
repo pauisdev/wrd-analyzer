@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import * as vscode from "vscode";
 import YAML from "yaml";
+import { getWordAt } from "./word";
 
 const opCodesFiles = fs.readFileSync("src/docs/op_codes.wrd.yaml", "utf-8");
 const opCodes = YAML.parse(opCodesFiles);
@@ -15,18 +16,25 @@ export function activate(context: vscode.ExtensionContext) {
 				.split("\n")
 				.map((line) => line.trim());
 			const currentLine = lines[position.line];
-			const isHoveringOverOpCode = position.character <= 4;
-			if (isHoveringOverOpCode) {
-				const opCode = currentLine.slice(1, 4);
-				const documentation = opCodes[opCode].Description;
-				const params = Object.entries(opCodes[opCode])
-					.filter(([key, _value]) => key !== "Description")
-					.map(([key, value]) => {
-						return `*@${key}*: \`${value}\``;
-					});
-				return {
-					contents: [`### Opcode ${opCode}`, documentation, ...params],
-				};
+			const currentWord = getWordAt(currentLine, position.character);
+			if (currentWord.trim() === "") return;
+			if (currentWord.startsWith("<")) {
+				const possibleOpCode = currentWord.slice(1);
+				if (opCodes[possibleOpCode]) {
+					const documentation = opCodes[possibleOpCode].Description;
+					const params = Object.entries(opCodes[possibleOpCode])
+						.filter(([key, _value]) => key !== "Description")
+						.map(([key, value]) => {
+							return `*@${key}*: \`${value}\``;
+						});
+					return {
+						contents: [
+							`### Opcode ${possibleOpCode}`,
+							documentation,
+							...params,
+						],
+					};
+				}
 			}
 			return;
 		},
