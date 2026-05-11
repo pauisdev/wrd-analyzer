@@ -1,7 +1,31 @@
+import fs from "node:fs";
 import * as vscode from "vscode";
+import YAML from "yaml";
+
+const opCodesFiles = fs.readFileSync("src/docs/op_codes.wrd.yaml", "utf-8");
+const opCodes = YAML.parse(opCodesFiles);
 
 export function activate(context: vscode.ExtensionContext) {
 	vscode.window.showInformationMessage("WRD Analyzer started!");
+
+	vscode.languages.registerHoverProvider("wrd", {
+		provideHover(document, position, _token) {
+			const lines = document
+				.getText()
+				.split("\n")
+				.map((line) => line.trim());
+			const currentLine = lines[position.line];
+			const isHoveringOverOpCode = position.character <= 4;
+			if (isHoveringOverOpCode) {
+				const opCode = currentLine.slice(1, 4);
+				const documentation = opCodes[opCode]["Description"];
+				return {
+					contents: [documentation],
+				};
+			}
+			return;
+		},
+	});
 
 	const definitionDisposable = vscode.languages.registerDefinitionProvider(
 		"wrd",

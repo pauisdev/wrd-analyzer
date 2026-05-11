@@ -12,17 +12,26 @@
 	"activationEvents": [],
 	"main": "./out/extension.js",
 	"contributes": {
-		"languages": [{
-      "id": "wrd",
-      "aliases": ["WRD", "wrd"],
-      "extensions": ["_wrdExport.txt"],
-      "configuration": "./src/syntax/config.json"
-    }],
-    "grammars": [{
-      "language": "wrd",
-      "scopeName": "text.wrd.wrd",
-      "path": "./src/syntax/language.tmLanguage.json"
-    }]
+		"languages": [
+			{
+				"id": "wrd",
+				"aliases": [
+					"WRD",
+					"wrd"
+				],
+				"extensions": [
+					"_wrdExport.txt"
+				],
+				"configuration": "./src/syntax/config.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "wrd",
+				"scopeName": "text.wrd.wrd",
+				"path": "./src/syntax/language.tmLanguage.json"
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "pnpm run compile",
@@ -40,5 +49,8 @@
 		"@vscode/test-electron": "^2.5.2",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.56.1"
+	},
+	"dependencies": {
+		"yaml": "^2.8.4"
 	}
 }
