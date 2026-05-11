@@ -1,5 +1,5 @@
 C013_Yonag: Angie Yonaga
 Level5:
-  - Default: Default definition (anything else)
-  - ADF: Definition for ADF OP CODE
-  - VIB: Definition for VIB OP CODE
+  Default: Default definition (anything else)
+  ADF: Definition for ADF OP CODE
+  VIB: Definition for VIB OP CODE
