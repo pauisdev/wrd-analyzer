@@ -23,3 +23,9 @@ export function getWordAt(str: string, pos: number) {
 	// Return the word, using the located bounds to extract it from the string.
 	return str.slice(left, right + pos);
 }
+
+export function wordWithoutBrackets(word: string) {
+	const result = /<?([A-Za-z_0-9]+)>?/.exec(word);
+	if (!result) return;
+	return result[1];
+}

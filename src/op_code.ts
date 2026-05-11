@@ -4,12 +4,15 @@ import YAML from "yaml";
 const opCodesFiles = fs.readFileSync("src/docs/op_codes.wrd.yaml", "utf-8");
 const opCodes = YAML.parse(opCodesFiles);
 
-export function opCodeToFormattedDocs(possibleOpCode: string) {
-	if (!opCodes[possibleOpCode]) return;
-	const documentation = opCodes[possibleOpCode].Description;
-	const args = formatArgs(possibleOpCode);
+export function isOpCode(code: string) {
+	return code in opCodes;
+}
+
+export function opCodeToFormattedDocs(code: string) {
+	const documentation = opCodes[code].Description;
+	const args = formatArgs(code);
 	return {
-		contents: [`### Opcode ${possibleOpCode}`, documentation, ...args],
+		contents: [`### Opcode ${code}`, documentation, ...args],
 	};
 }
 

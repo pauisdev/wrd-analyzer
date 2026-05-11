@@ -1,8 +1,8 @@
 import * as vscode from "vscode";
 import { documentToLines } from "./document";
-import { opCodeToFormattedDocs } from "./op_code";
+import { isOpCode, opCodeToFormattedDocs } from "./op_code";
 import { isValue, valueDocumentation } from "./values";
-import { getWordAt } from "./word";
+import { getWordAt, wordWithoutBrackets } from "./word";
 
 export function activate(context: vscode.ExtensionContext) {
 	vscode.window.showInformationMessage("WRD Analyzer started!");
@@ -11,24 +11,20 @@ export function activate(context: vscode.ExtensionContext) {
 		provideHover(document, position, _token) {
 			const lines = documentToLines(document);
 			const currentLine = lines[position.line];
-			const currentWord = getWordAt(currentLine, position.character);
-			if (currentWord.trim() === "") return;
-			if (currentWord.startsWith("<")) {
-				const possibleOpCode = currentWord.slice(1);
-				return opCodeToFormattedDocs(possibleOpCode);
+			const currentWord = wordWithoutBrackets(
+				getWordAt(currentLine, position.character),
+			);
+			if (!currentWord) return;
+			if (isOpCode(currentWord)) {
+				return opCodeToFormattedDocs(currentWord);
 			}
-			console.log(currentWord);
-			const possibleValue = currentWord.endsWith(">")
-				? currentWord.slice(0, -1)
-				: currentWord;
 
-			if (isValue(possibleValue)) {
-				const valueDocs = valueDocumentation(possibleValue);
+			if (isValue(currentWord)) {
+				const valueDocs = valueDocumentation(currentWord);
 				return {
 					contents: [valueDocs],
 				};
 			}
-			return;
 		},
 	});
 
