@@ -18,9 +18,14 @@ export function activate(context: vscode.ExtensionContext) {
 			const isHoveringOverOpCode = position.character <= 4;
 			if (isHoveringOverOpCode) {
 				const opCode = currentLine.slice(1, 4);
-				const documentation = opCodes[opCode]["Description"];
+				const documentation = opCodes[opCode].Description;
+				const params = Object.entries(opCodes[opCode])
+					.filter(([key, _value]) => key !== "Description")
+					.map(([key, value]) => {
+						return `*@${key}*: \`${value}\``;
+					});
 				return {
-					contents: [documentation],
+					contents: [`### Opcode ${opCode}`, documentation, ...params],
 				};
 			}
 			return;
