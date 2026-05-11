@@ -20,6 +20,11 @@ function formatArgs(opCode: string) {
 	return Object.entries(opCodes[opCode])
 		.filter(([key, _value]) => key !== "Description")
 		.map(([key, value]) => {
-			return `*@${key}*: \`${value}\``;
+			return `*@${key}*: \`${(value as Value).Type}\` — ${(value as Value).Description}`;
 		});
 }
+
+type Value = {
+	Type: "string" | "number" | "any";
+	Description: string;
+};
