@@ -1,6 +1,6 @@
 {
 	"comments": {},
-	"brackets": [["{", "}"]],
-	"autoClosingPairs": [["{", "}"], ["\"", "\""], ["'", "'"]],
-	"surroundingPairs": [["{", "}"], ["\"", "\""], ["'", "'"]]
+	"brackets": [["<", ">"]],
+	"autoClosingPairs": [["<", ">"]],
+	"surroundingPairs": [["<", ">"]]
 }
