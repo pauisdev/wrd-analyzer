@@ -1,15 +1,12 @@
 import * as vscode from "vscode";
 
-const fileExtension = "_wrdExport.txt";
-
 export function activate(context: vscode.ExtensionContext) {
 	vscode.window.showInformationMessage("WRD Analyzer started!");
 
 	const definitionDisposable = vscode.languages.registerDefinitionProvider(
-		"plaintext",
+		"wrd",
 		{
 			provideDefinition(document, position, _token) {
-				if (!document.fileName.endsWith(fileExtension)) return;
 				const lines = document
 					.getText()
 					.split("\n")

@@ -9,7 +9,7 @@
 	"categories": [
 		"Other"
 	],
-	"activationEvents": ["onLanguage:plaintext"],
+	"activationEvents": [],
 	"main": "./out/extension.js",
 	"contributes": {
 		"languages": [{
