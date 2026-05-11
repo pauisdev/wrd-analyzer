@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import { documentToLines } from "./document";
 import { opCodeToFormattedDocs } from "./op_code";
 import { getWordAt } from "./word";
 
@@ -7,10 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const hoverDisposable = vscode.languages.registerHoverProvider("wrd", {
 		provideHover(document, position, _token) {
-			const lines = document
-				.getText()
-				.split("\n")
-				.map((line) => line.trim());
+			const lines = documentToLines(document);
 			const currentLine = lines[position.line];
 			const currentWord = getWordAt(currentLine, position.character);
 			if (currentWord.trim() === "") return;
@@ -26,10 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
 		"wrd",
 		{
 			provideDefinition(document, position, _token) {
-				const lines = document
-					.getText()
-					.split("\n")
-					.map((line) => line.trim());
+				const lines = documentToLines(document);
 				const currentLine = lines[position.line];
 
 				const jumpFromTo = {
