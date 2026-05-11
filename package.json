@@ -11,7 +11,19 @@
 	],
 	"activationEvents": ["onLanguage:plaintext"],
 	"main": "./out/extension.js",
-	"contributes": {},
+	"contributes": {
+		"languages": [{
+      "id": "wrd",
+      "aliases": ["WRD", "wrd"],
+      "extensions": ["_wrdExport.txt"],
+      "configuration": "./src/syntax/config.json"
+    }],
+    "grammars": [{
+      "language": "wrd",
+      "scopeName": "text.wrd.wrd",
+      "path": "./src/syntax/language.tmLanguage.json"
+    }]
+	},
 	"scripts": {
 		"vscode:prepublish": "pnpm run compile",
 		"compile": "tsc -p ./",

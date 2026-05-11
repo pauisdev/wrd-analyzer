@@ -1,0 +1,38 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "WRD",
+	"scopeName": "text.wrd.wrd",
+	"patterns": [
+		{
+			"match": "(<)([a-zA-Z_]+) (.+?(?=>))(>)",
+			"captures": {
+				"1": {
+					"name": "constant"
+				},
+				"2": {
+					"name": "keyword"
+				},
+				"3": {
+					"name": "variable"
+				},
+				"4": {
+					"name": "constant"
+				}
+			}
+		},
+		{
+			"match": "(<)([a-zA-Z_]+)(>)",
+			"captures": {
+				"1": {
+					"name": "constant"
+				},
+				"2": {
+					"name": "keyword"
+				},
+				"3": {
+					"name": "constant"
+				}
+			}
+		}
+	]
+}
