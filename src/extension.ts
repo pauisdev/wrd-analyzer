@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import { documentToLines } from "./document";
 import { opCodeToFormattedDocs } from "./op_code";
+import { isValue, valueDocumentation } from "./values";
 import { getWordAt } from "./word";
 
 export function activate(context: vscode.ExtensionContext) {
@@ -15,6 +16,17 @@ export function activate(context: vscode.ExtensionContext) {
 			if (currentWord.startsWith("<")) {
 				const possibleOpCode = currentWord.slice(1);
 				return opCodeToFormattedDocs(possibleOpCode);
+			}
+			console.log(currentWord);
+			const possibleValue = currentWord.endsWith(">")
+				? currentWord.slice(0, -1)
+				: currentWord;
+
+			if (isValue(possibleValue)) {
+				const valueDocs = valueDocumentation(possibleValue);
+				return {
+					contents: [valueDocs],
+				};
 			}
 			return;
 		},
