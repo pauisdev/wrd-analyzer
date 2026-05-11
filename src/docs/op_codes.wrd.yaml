@@ -1,346 +1,730 @@
 FLG:
   Description: Set Flag
-  Arg1: string
-  Arg2: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
 IFF:
   Description: If Flag
-  Arg1: string
-  Arg2: string
-  Arg3: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
 WAK:
   Description: Work ("waaku") (Seems to be used to configure game engine parameters)
-  Arg1: string
-  Arg2: string
-  Arg3: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
 IFW:
   Description: If WAK
-  Arg1: string
-  Arg2: string
-  Arg3: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: number
 SWI:
   Description: Begin switch statement
-  Arg1: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
 CAS:
   Description: Switch Case
-  Arg1: number
+  Arg1:
+    Description: Description for Arg1
+    Type: number
 MPF:
   Description: Map Flag?
-  Arg1: string
-  Arg2: string
-  Arg3: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
 SPW:
-  Description: ''
+  Description: Undocumented
 MOD:
   Description: Set Modifier (Also used to configure game engine parameters)
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
 HUM:
   Description: Human? Seems to be used to initialize "interactable" objects in a map?
-  Arg1: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
 CHK:
   Description: Adds a Truth Bullet to the list of usable evidence during a non-stop debate.
-  Arg1: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
 KTD:
   Description: Kotodama?
-  Arg1: string
-  Arg2: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
 CLR:
   Description: Clear?
 RET:
   Description: 'Return? There''s another command later which is definitely return, though...'
 KNM:
   Description: Kinematics (camera movement)
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
-  Arg5: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
+  Arg5:
+    Description: Description for Arg5
+    Type: string
 CAP:
   Description: Camera Parameters?
 FIL:
   Description: Load Script File & jump to label
-  Arg1: string
-  Arg2: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
 END:
   Description: End of script or switch case
 SUB:
   Description: Jump to subroutine
-  Arg1: string
-  Arg2: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
 RTN:
   Description: Return (called inside subroutine)
 LAB:
   Description: Label name
-  Arg1: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
 JMP:
   Description: Jump to label
-  Arg1: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
 MOV:
   Description: Movie
-  Arg1: string
-  Arg2: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
 FLS:
   Description: Flash
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
 FLM:
   Description: Flash Modifier?
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
-  Arg5: string
-  Arg6: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
+  Arg5:
+    Description: Description for Arg5
+    Type: string
+  Arg6:
+    Description: Description for Arg6
+    Type: string
 VOI:
   Description: Play voice clip
-  Arg1: string
-  Arg2: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
 BGM:
   Description: Play BGM
-  Arg1: string
-  Arg2: string
-  Arg3: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
 SE:
   Description: Play sound effect
-  Arg1: string
-  Arg2: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
 JIN:
   Description: Play jingle
-  Arg1: string
-  Arg2: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
 CHN:
   Description: Set active character name (current name above the dialogue box)
-  Arg1: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
 VIB:
   Description: Camera Vibration
-  Arg1: string
-  Arg2: string
-  Arg3: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
 FDS:
   Description: Fade Screen
-  Arg1: string
-  Arg2: string
-  Arg3: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
 FLA:
-  Description: ''
+  Description: Undocumented
 LIG:
   Description: Lighting Parameters
-  Arg1: string
-  Arg2: number
-  Arg3: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: number
+  Arg3:
+    Description: Description for Arg3
+    Type: string
 CHR:
   Description: Character Parameters
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
-  Arg5: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
+  Arg5:
+    Description: Description for Arg5
+    Type: string
 BGD:
   Description: Background Parameters
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
 CUT:
   Description: 'Cut-in (display image for things like Truth Bullets, etc.)'
-  Arg1: string
-  Arg2: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
 ADF:
   Description: Character Vibration?
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
-  Arg5: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
+  Arg5:
+    Description: Description for Arg5
+    Type: string
 PAL:
-  Description: ''
+  Description: Undocumented
 MAP:
   Description: Load Map
-  Arg1: string
-  Arg2: string
-  Arg3: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
 OBJ:
   Description: Load Object
-  Arg1: string
-  Arg2: string
-  Arg3: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
 BUL:
   Description: Seems to be related to some kind of screen effect?
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
-  Arg5: string
-  Arg6: string
-  Arg7: string
-  Arg8: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
+  Arg5:
+    Description: Description for Arg5
+    Type: string
+  Arg6:
+    Description: Description for Arg6
+    Type: string
+  Arg7:
+    Description: Description for Arg7
+    Type: string
+  Arg8:
+    Description: Description for Arg8
+    Type: string
 CRF:
   Description: Cross Fade
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
-  Arg5: string
-  Arg6: string
-  Arg7: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
+  Arg5:
+    Description: Description for Arg5
+    Type: string
+  Arg6:
+    Description: Description for Arg6
+    Type: string
+  Arg7:
+    Description: Description for Arg7
+    Type: string
 CAM:
   Description: Camera command
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
-  Arg5: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
+  Arg5:
+    Description: Description for Arg5
+    Type: string
 KWM:
   Description: Game/UI Mode
-  Arg1: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
 ARE:
-  Description: ''
-  Arg1: string
-  Arg2: string
-  Arg3: string
+  Description: Undocumented
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
 KEY:
   Description: Enable/disable "key" items for unlocking areas
-  Arg1: string
-  Arg2: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
 WIN:
   Description: Window parameters
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
 MSC:
-  Description: ''
+  Description: Undocumented
 CSM:
-  Description: ''
+  Description: Undocumented
 PST:
   Description: Post-Processing
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
-  Arg5: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
+  Arg5:
+    Description: Description for Arg5
+    Type: string
 KNS:
   Description: Kinematics Numeric parameters?
-  Arg1: string
-  Arg2: number
-  Arg3: string
-  Arg4: string
-  Arg5: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: number
+  Arg3:
+    Description: Description for Arg3
+    Type: number
+  Arg4:
+    Description: Description for Arg4
+    Type: number
+  Arg5:
+    Description: Description for Arg5
+    Type: number
 FON:
   Description: Set Font
-  Arg1: number
-  Arg2: string
+  Arg1:
+    Description: Description for Arg1
+    Type: number
+  Arg2:
+    Description: Description for Arg2
+    Type: number
 BGO:
   Description: Load Background Object
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
-  Arg5: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
+  Arg5:
+    Description: Description for Arg5
+    Type: string
 LOG:
   Description: Add next text to log (only used in class trials during nonstop debates)
 SPT:
   Description: Used only in Class Trial? Always set to "non"?
-  Arg1: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
 CDV:
-  Description: ''
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
-  Arg5: string
-  Arg6: string
-  Arg7: string
-  Arg8: string
-  Arg9: string
-  Arg10: string
+  Description: Undocumented
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
+  Arg5:
+    Description: Description for Arg5
+    Type: string
+  Arg6:
+    Description: Description for Arg6
+    Type: string
+  Arg7:
+    Description: Description for Arg7
+    Type: string
+  Arg8:
+    Description: Description for Arg8
+    Type: string
+  Arg9:
+    Description: Description for Arg9
+    Type: string
+  Arg10:
+    Description: Description for Arg10
+    Type: string
 SZM:
   Description: >-
     Stand Position (Class Trial) (posX, posY, speed) (can be negative and
     floats)
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
 PVI:
   Description: Class Trial Chapter? Pre-trial intermission?
-  Arg1: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
 EXP:
   Description: Give EXP
-  Arg1: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
 MTA:
   Description: Used only in Class Trial? Usually set to "non"?
-  Arg1: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
 MVP:
   Description: Move object to its designated position?
-  Arg1: string
-  Arg2: string
-  Arg3: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
 POS:
   Description: Object/Exisal position
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
-  Arg5: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
+  Arg5:
+    Description: Description for Arg5
+    Type: string
 ICO:
   Description: Display a Program World character portrait
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
 EAI:
   Description: Exisal AI
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
-  Arg5: string
-  Arg6: string
-  Arg7: string
-  Arg8: string
-  Arg9: string
-  Arg10: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
+  Arg5:
+    Description: Description for Arg5
+    Type: string
+  Arg6:
+    Description: Description for Arg6
+    Type: string
+  Arg7:
+    Description: Description for Arg7
+    Type: string
+  Arg8:
+    Description: Description for Arg8
+    Type: string
+  Arg9:
+    Description: Description for Arg9
+    Type: string
+  Arg10:
+    Description: Description for Arg10
+    Type: string
 COL:
   Description: Set object collision
-  Arg1: string
-  Arg2: string
-  Arg3: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
 CFP:
   Description: Camera Follow Path? Seems to make the camera move in some way
-  Arg1: string
-  Arg2: string
-  Arg3: string
-  Arg4: string
-  Arg5: string
-  Arg6: string
-  Arg7: string
-  Arg8: string
-  Arg9: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
+  Arg2:
+    Description: Description for Arg2
+    Type: string
+  Arg3:
+    Description: Description for Arg3
+    Type: string
+  Arg4:
+    Description: Description for Arg4
+    Type: string
+  Arg5:
+    Description: Description for Arg5
+    Type: string
+  Arg6:
+    Description: Description for Arg6
+    Type: string
+  Arg7:
+    Description: Description for Arg7
+    Type: string
+  Arg8:
+    Description: Description for Arg8
+    Type: string
+  Arg9:
+    Description: Description for Arg9
+    Type: string
 CLT:
   Description: Text modifier command
-  Arg1: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
 R:
-  Description: ''
+  Description: Undocumented
 PAD:
   Description: Insert gamepad button symbol into dialogue text
-  Arg1: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
 LOC:
   Description: Display dialogue string in dialogue box
-  Arg1: string
+  Arg1:
+    Description: Description for Arg1
+    Type: string
 BTN:
   Description: Wait for player's button press
 ENT:
-  Description: ''
+  Description: Undocumented
 CED:
   Description: Check End (Used after IFF and IFW commands)
 LBN:
   Description: Local Branch Number (for branching case statements)
-  Arg1: number
+  Arg1:
+    Description: Description for Arg1
+    Type: number
 JMN:
   Description: Jump to Local Branch (for branching case statements)
-  Arg1: number
+  Arg1:
+    Description: Description for Arg1
+    Type: number
