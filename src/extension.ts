@@ -1,22 +1,39 @@
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
-	console.log('Congratulations, your extension "wrd-analyzer" is now active!');
+	vscode.window.showInformationMessage("WRD Analyzer started!");
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand(
-		"wrd-analyzer.helloWorld",
-		() => {
-			// The code you place here will be executed every time your command is executed
-			// Display a message box to the user
-			vscode.window.showInformationMessage("Hello World from wrd-analyzer!");
+	const definitionDisposable = vscode.languages.registerDefinitionProvider(
+		"plaintext",
+		{
+			provideDefinition(document, position, _token) {
+				const lines = document
+					.getText()
+					.split("\n")
+					.map((line) => line.trim());
+				const currentLine = lines[position.line];
+				const result = /<JMN ([0-9]+)>/.exec(currentLine);
+				if (result === null) return;
+				const [_, id] = result;
+				const definitionToSearch = `<LBN ${id}>`;
+				const definitionLine = lines.indexOf(definitionToSearch);
+				if (definitionLine === -1) {
+					vscode.window.showErrorMessage(`Label id ${id} not found.`);
+					return;
+				}
+				const definitionLength = definitionToSearch.length;
+
+				const start = new vscode.Position(definitionLine, 0);
+				const end = new vscode.Position(definitionLine, definitionLength);
+				return {
+					uri: document.uri,
+					range: new vscode.Range(start, end),
+				};
+			},
 		},
 	);
 
-	context.subscriptions.push(disposable);
+	context.subscriptions.push(definitionDisposable);
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {}
