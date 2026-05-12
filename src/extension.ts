@@ -2,11 +2,27 @@ import * as vscode from "vscode";
 import completion from "./events/completion";
 import definition from "./events/definition";
 import hover from "./events/hover";
-import { createConfigFiles } from "./file";
+import { createConfigFiles, readConfigFiles } from "./file";
+import { recomputeOpCodes } from "./op_code";
+import { recomputeValuesFile } from "./values";
 
 export function activate(context: vscode.ExtensionContext) {
+	const workspace = vscode.workspace.workspaceFolders?.at(0);
+	if (!workspace) return;
+	const configFiles = readConfigFiles(workspace.uri.fsPath);
+	if (configFiles.opCodesFile) {
+		recomputeOpCodes(configFiles.opCodesFile);
+	}
+	if (configFiles.valuesFile) {
+		recomputeValuesFile(configFiles.valuesFile);
+	}
+	if (configFiles.opCodesFile || configFiles.valuesFile) {
+		vscode.window.showInformationMessage(
+			"Detected and loaded config files in current workspace.",
+		);
+	}
+
 	vscode.window.showInformationMessage("WRD Analyzer started!");
-	console.log(vscode.workspace.workspaceFolders);
 
 	const createConfigFilesCommandDisposable = vscode.commands.registerCommand(
 		"wrd-analyzer.create-config-files",

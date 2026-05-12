@@ -1,11 +1,12 @@
 import fs from "node:fs";
 import YAML from "yaml";
 
-export const opCodesFile = fs.readFileSync(
-	"src/docs/op_codes.wrd.yaml",
-	"utf-8",
-);
-const opCodes = YAML.parse(opCodesFile);
+const opCodesFile = fs.readFileSync("src/docs/op_codes.wrd.yaml", "utf-8");
+let opCodes = YAML.parse(opCodesFile);
+
+export function recomputeOpCodes(newOpCodesFile: string) {
+	opCodes = YAML.parse(newOpCodesFile);
+}
 
 export function isOpCode(code: string) {
 	return code in opCodes;

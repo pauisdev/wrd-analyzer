@@ -1,8 +1,12 @@
 import fs from "node:fs";
 import YAML from "yaml";
 
-export const valuesFile = fs.readFileSync("src/docs/values.wrd.yaml", "utf-8");
-const values = YAML.parse(valuesFile);
+const valuesFile = fs.readFileSync("src/docs/values.wrd.yaml", "utf-8");
+let values = YAML.parse(valuesFile);
+
+export function recomputeValuesFile(newValuesFile: string) {
+	values = YAML.parse(newValuesFile);
+}
 
 export function isValue(str: string) {
 	return str in values;
