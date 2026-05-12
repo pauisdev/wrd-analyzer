@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import YAML from "yaml";
 
-const valuesFile = fs.readFileSync("src/docs/values.wrd.yaml", "utf-8");
+export const valuesFile = fs.readFileSync("src/docs/values.wrd.yaml", "utf-8");
 const values = YAML.parse(valuesFile);
 
 export function isValue(str: string) {
