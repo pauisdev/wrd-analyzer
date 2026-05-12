@@ -16,7 +16,6 @@ For developers, follow the [Development guide](#Development).
 # Development
 Requirements:
 - Git
-- PNPM
 - Node
 
 1. Clone the repo and install dependencies
