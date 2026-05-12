@@ -1,6 +1,11 @@
 # WRD Analyzer
 A Visual Studio Code extension for adding Intellisense into your WRD files.
 
+## Features
+- Syntax Highlighting
+- Jump to definition on JMP and JMN op codes
+- Documentation on hover
+
 ## Contributing
 Contributions are welcome! Simplest contribution you can do is adding new documentation into either the `op_codes.wrd.yaml` or `values.wrd.yaml` inside the `docs/` folder.
 
