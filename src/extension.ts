@@ -50,6 +50,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(hoverDisposable);
 	context.subscriptions.push(definitionDisposable);
 	context.subscriptions.push(completionDisposable);
+	context.subscriptions.push(createConfigFilesCommandDisposable);
 }
 
 export function deactivate() {}
