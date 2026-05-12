@@ -9,7 +9,7 @@
 	"categories": [
 		"Other"
 	],
-	"activationEvents": ["onStartupFinished", "onLanguage:wrd"],
+	"activationEvents": [],
 	"main": "./out/extension.js",
 	"repository": {
 		"type": "git",
