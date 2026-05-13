@@ -3,11 +3,11 @@ import path from "node:path";
 
 export function createConfigFiles(extensionPath: string, folderPath: string) {
 	const originalOpCodesFile = fs.readFileSync(
-		path.join(extensionPath, "src", "docs", "op_codes.wrd.yaml"),
+		path.join(extensionPath, "docs", "op_codes.wrd.yaml"),
 		"utf-8",
 	);
 	const originalValuesFile = fs.readFileSync(
-		path.join(extensionPath, "src", "docs", "values.wrd.yaml"),
+		path.join(extensionPath, "docs", "values.wrd.yaml"),
 		"utf-8",
 	);
 	const opOutFile = path.join(folderPath, "op_codes.wrd.yaml");

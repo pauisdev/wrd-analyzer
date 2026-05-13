@@ -18,7 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const originalOpCodesFile = fs.readFileSync(
 				path.join(
 					context.extension.extensionPath,
-					"src",
+
 					"docs",
 					"op_codes.wrd.yaml",
 				),
@@ -30,12 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
 			recomputeValuesFile(configFiles.valuesFile);
 		} else {
 			const originalValuesFile = fs.readFileSync(
-				path.join(
-					context.extension.extensionPath,
-					"src",
-					"docs",
-					"values.wrd.yaml",
-				),
+				path.join(context.extension.extensionPath, "docs", "values.wrd.yaml"),
 				"utf-8",
 			);
 			recomputeValuesFile(originalValuesFile);
