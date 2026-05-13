@@ -34,14 +34,14 @@
 				"extensions": [
 					"_wrdExport.txt"
 				],
-				"configuration": "./src/syntax/config.json"
+				"configuration": "./syntax/config.json"
 			}
 		],
 		"grammars": [
 			{
 				"language": "wrd",
 				"scopeName": "text.wrd.wrd",
-				"path": "./src/syntax/language.tmLanguage.json"
+				"path": "./syntax/language.tmLanguage.json"
 			}
 		]
 	},
