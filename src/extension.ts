@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import * as vscode from "vscode";
 import completion from "./events/completion";
 import definition from "./events/definition";
@@ -7,19 +9,44 @@ import { recomputeOpCodes } from "./op_code";
 import { recomputeValuesFile } from "./values";
 
 export function activate(context: vscode.ExtensionContext) {
+	console.log(context.extension.extensionPath);
+
 	const workspace = vscode.workspace.workspaceFolders?.at(0);
-	if (!workspace) return;
-	const configFiles = readConfigFiles(workspace.uri.fsPath);
-	if (configFiles.opCodesFile) {
-		recomputeOpCodes(configFiles.opCodesFile);
-	}
-	if (configFiles.valuesFile) {
-		recomputeValuesFile(configFiles.valuesFile);
-	}
-	if (configFiles.opCodesFile || configFiles.valuesFile) {
-		vscode.window.showInformationMessage(
-			"Detected and loaded config files in current workspace.",
-		);
+	if (workspace) {
+		const configFiles = readConfigFiles(workspace.uri.fsPath);
+		if (configFiles.opCodesFile) {
+			recomputeOpCodes(configFiles.opCodesFile);
+		} else {
+			const originalOpCodesFile = fs.readFileSync(
+				path.join(
+					context.extension.extensionPath,
+					"src",
+					"docs",
+					"op_codes.wrd.yaml",
+				),
+				"utf-8",
+			);
+			recomputeOpCodes(originalOpCodesFile);
+		}
+		if (configFiles.valuesFile) {
+			recomputeValuesFile(configFiles.valuesFile);
+		} else {
+			const originalValuesFile = fs.readFileSync(
+				path.join(
+					context.extension.extensionPath,
+					"src",
+					"docs",
+					"values.wrd.yaml",
+				),
+				"utf-8",
+			);
+			recomputeValuesFile(originalValuesFile);
+		}
+		if (configFiles.opCodesFile || configFiles.valuesFile) {
+			vscode.window.showInformationMessage(
+				"Detected and loaded config files in current workspace.",
+			);
+		}
 	}
 
 	vscode.window.showInformationMessage("WRD Analyzer started!");
@@ -34,7 +61,7 @@ export function activate(context: vscode.ExtensionContext) {
 				);
 				return;
 			}
-			createConfigFiles(workspace.uri.fsPath);
+			createConfigFiles(context.extension.extensionPath, workspace.uri.fsPath);
 			vscode.window.showInformationMessage("Config files created!");
 		},
 	);

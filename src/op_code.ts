@@ -1,8 +1,6 @@
-import fs from "node:fs";
 import YAML from "yaml";
 
-const opCodesFile = fs.readFileSync("src/docs/op_codes.wrd.yaml", "utf-8");
-let opCodes = YAML.parse(opCodesFile);
+let opCodes: any = {};
 
 export function recomputeOpCodes(newOpCodesFile: string) {
 	opCodes = YAML.parse(newOpCodesFile);

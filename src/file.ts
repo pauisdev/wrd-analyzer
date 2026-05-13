@@ -1,13 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
 
-export function createConfigFiles(folderPath: string) {
+export function createConfigFiles(extensionPath: string, folderPath: string) {
 	const originalOpCodesFile = fs.readFileSync(
-		"src/docs/op_codes.wrd.yaml",
+		path.join(extensionPath, "src", "docs", "op_codes.wrd.yaml"),
 		"utf-8",
 	);
 	const originalValuesFile = fs.readFileSync(
-		"src/docs/values.wrd.yaml",
+		path.join(extensionPath, "src", "docs", "values.wrd.yaml"),
 		"utf-8",
 	);
 	const opOutFile = path.join(folderPath, "op_codes.wrd.yaml");
