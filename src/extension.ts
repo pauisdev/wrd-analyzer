@@ -9,8 +9,6 @@ import { recomputeOpCodes } from "./op_code";
 import { recomputeValuesFile } from "./values";
 
 export function activate(context: vscode.ExtensionContext) {
-	console.log(context.extension.extensionPath);
-
 	const workspace = vscode.workspace.workspaceFolders?.at(0);
 	if (workspace) {
 		const configFiles = readConfigFiles(workspace.uri.fsPath);
