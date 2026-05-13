@@ -21,7 +21,7 @@ Requirements:
 1. Clone the repo and install dependencies
     ```bash
     $ git clone https://github.com/Pauisdev/wrd-analyzer
-    $ pnpm install
+    $ npm install
     ```
 2. Make some changes!
 3. Test them out by running the extension with F5

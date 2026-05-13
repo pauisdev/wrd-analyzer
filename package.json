@@ -46,11 +46,11 @@
 		]
 	},
 	"scripts": {
-		"vscode:prepublish": "pnpm run compile",
+		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
-		"pretest": "pnpm run compile && pnpm run lint",
-		"lint": "eslint src"
+		"pretest": "npm run compile && npm run lint",
+		"lint": "biome lint"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.15",
