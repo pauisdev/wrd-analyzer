@@ -50,6 +50,11 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(diagnosticsCollection);
 	setDiagnosticsCollection(diagnosticsCollection);
 
+	const currentDocument = vscode.window.activeTextEditor?.document;
+	if (currentDocument && currentDocument.languageId === "wrd") {
+		updateDiagnostics(currentDocument);
+	}
+
 	vscode.workspace.onDidOpenTextDocument((doc) => {
 		if (doc.languageId === "wrd") {
 			updateDiagnostics(doc);
