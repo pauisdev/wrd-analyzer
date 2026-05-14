@@ -24,4 +24,40 @@ function addDiagnostic(
 
 export function updateDiagnostics(document: vscode.TextDocument) {
 	diagnosticsCollection.delete(document.uri);
+
+	const lines = document.getText().split("\n");
+	for (let i = 0; i < lines.length; i++) {
+		const line = lines[i].trimEnd();
+		if (line.trim() !== line) {
+			const extraStartingPadding = line.length - line.trim().length;
+			addDiagnostic(
+				document,
+				new vscode.Range(
+					new vscode.Position(i, 0),
+					new vscode.Position(i, extraStartingPadding),
+				),
+				"Extra padding should be removed",
+				vscode.DiagnosticSeverity.Error,
+			);
+		}
+		if (!line.startsWith("<")) {
+			addDiagnostic(
+				document,
+				new vscode.Range(new vscode.Position(i, 0), new vscode.Position(i, 1)),
+				"Missing starting '<' bracket",
+				vscode.DiagnosticSeverity.Error,
+			);
+		}
+		if (!line.endsWith(">")) {
+			addDiagnostic(
+				document,
+				new vscode.Range(
+					new vscode.Position(i, line.length),
+					new vscode.Position(i, line.length),
+				),
+				"Missing ending '>' bracket",
+				vscode.DiagnosticSeverity.Error,
+			);
+		}
+	}
 }
