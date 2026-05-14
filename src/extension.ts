@@ -51,21 +51,18 @@ export function activate(context: vscode.ExtensionContext) {
 	setDiagnosticsCollection(diagnosticsCollection);
 
 	const currentDocument = vscode.window.activeTextEditor?.document;
-	if (currentDocument && currentDocument.languageId === "wrd") {
-		updateDiagnostics(currentDocument);
+	if (currentDocument) {
+		runDiagnosticsIfDocumentIsWrd(currentDocument);
 	}
 
-	vscode.workspace.onDidOpenTextDocument((doc) => {
-		if (doc.languageId === "wrd") {
-			updateDiagnostics(doc);
-		}
-	});
-
-	vscode.workspace.onDidChangeTextDocument((event) => {
-		if (event.document.languageId === "wrd") {
-			updateDiagnostics(event.document);
-		}
-	});
+	context.subscriptions.push(
+		vscode.workspace.onDidOpenTextDocument((doc) =>
+			runDiagnosticsIfDocumentIsWrd(doc),
+		),
+		vscode.workspace.onDidChangeTextDocument((event) =>
+			runDiagnosticsIfDocumentIsWrd(event.document),
+		),
+	);
 
 	const createConfigFilesCommandDisposable = vscode.commands.registerCommand(
 		"wrd-analyzer.create-config-files",
@@ -110,6 +107,12 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(definitionDisposable);
 	context.subscriptions.push(completionDisposable);
 	context.subscriptions.push(createConfigFilesCommandDisposable);
+}
+
+function runDiagnosticsIfDocumentIsWrd(document: vscode.TextDocument) {
+	if (document.languageId === "wrd") {
+		updateDiagnostics(document);
+	}
 }
 
 export function deactivate() {}
