@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import * as vscode from "vscode";
+import { setDiagnosticsCollection, updateDiagnostics } from "./diagnostics";
 import completion from "./events/completion";
 import definition from "./events/definition";
 import hover from "./events/hover";
@@ -43,6 +44,17 @@ export function activate(context: vscode.ExtensionContext) {
 	}
 
 	vscode.window.showInformationMessage("WRD Analyzer started!");
+
+	const diagnosticsCollection =
+		vscode.languages.createDiagnosticCollection("wrd-analyzer");
+	context.subscriptions.push(diagnosticsCollection);
+	setDiagnosticsCollection(diagnosticsCollection);
+
+	vscode.workspace.onDidChangeTextDocument((event) => {
+		if (event.document.languageId === "wrd") {
+			updateDiagnostics(event.document);
+		}
+	});
 
 	const createConfigFilesCommandDisposable = vscode.commands.registerCommand(
 		"wrd-analyzer.create-config-files",
