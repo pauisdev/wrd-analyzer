@@ -6,8 +6,11 @@ import completion from "./events/completion";
 import definition from "./events/definition";
 import hover from "./events/hover";
 import { createConfigFiles, readConfigFiles } from "./file";
+import { Logger } from "./logger";
 import { recomputeOpCodes } from "./op_code";
 import { recomputeValuesFile } from "./values";
+
+export let outputChannel: vscode.OutputChannel;
 
 export function activate(context: vscode.ExtensionContext) {
 	const workspace = vscode.workspace.workspaceFolders?.at(0);
@@ -43,8 +46,6 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	}
 
-	vscode.window.showInformationMessage("WRD Analyzer started!");
-
 	const diagnosticsCollection =
 		vscode.languages.createDiagnosticCollection("wrd-analyzer");
 	context.subscriptions.push(diagnosticsCollection);
@@ -60,10 +61,9 @@ export function activate(context: vscode.ExtensionContext) {
 		0,
 	);
 
-	const outputChannel = vscode.window.createOutputChannel(
-		"WRD Analyzer",
-		"wrd",
-	);
+	outputChannel = vscode.window.createOutputChannel("WRD Analyzer", {
+		log: true,
+	});
 	const showLogsCommandId = "wrd-analyzer.show-logs";
 	vscode.commands.registerCommand(showLogsCommandId, () => {
 		outputChannel.show();
@@ -71,6 +71,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	statusBar.text = `$(coffee) WRD`;
 	statusBar.command = showLogsCommandId;
+	statusBar.tooltip = "Show logs";
 	statusBar.show();
 
 	context.subscriptions.push(
@@ -125,6 +126,8 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(definitionDisposable);
 	context.subscriptions.push(completionDisposable);
 	context.subscriptions.push(createConfigFilesCommandDisposable);
+
+	Logger.info("✅ WRD Analyzer is ready.");
 }
 
 function runDiagnosticsIfDocumentIsWrd(document: vscode.TextDocument) {
