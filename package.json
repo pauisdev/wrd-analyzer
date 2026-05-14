@@ -7,8 +7,9 @@
 		"vscode": "^1.118.0"
 	},
 	"categories": [
-		"Other"
+		"Programming Languages"
 	],
+	"icon": "resources/icon.png",
 	"activationEvents": [],
 	"main": "./out/extension.js",
 	"repository": {
