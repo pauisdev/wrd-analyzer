@@ -27,37 +27,40 @@ export function updateDiagnostics(document: vscode.TextDocument) {
 
 	const lines = document.getText().split("\n");
 	for (let i = 0; i < lines.length; i++) {
+		const helper = new DiagnosticHelper(document, i);
 		const line = lines[i].trimEnd();
+
 		if (line.trim() !== line) {
 			const extraStartingPadding = line.length - line.trim().length;
-			addDiagnostic(
-				document,
-				new vscode.Range(
-					new vscode.Position(i, 0),
-					new vscode.Position(i, extraStartingPadding),
-				),
-				"Extra padding should be removed",
-				vscode.DiagnosticSeverity.Error,
-			);
+			helper.error("Extra padding should be removed", 0, extraStartingPadding);
 		}
 		if (!line.startsWith("<")) {
-			addDiagnostic(
-				document,
-				new vscode.Range(new vscode.Position(i, 0), new vscode.Position(i, 1)),
-				"Missing starting '<' bracket",
-				vscode.DiagnosticSeverity.Error,
-			);
+			helper.error("Missing starting '<' bracket", 0, 1);
 		}
 		if (!line.endsWith(">")) {
-			addDiagnostic(
-				document,
-				new vscode.Range(
-					new vscode.Position(i, line.length),
-					new vscode.Position(i, line.length),
-				),
-				"Missing ending '>' bracket",
-				vscode.DiagnosticSeverity.Error,
-			);
+			helper.error("Missing ending '>' bracket", line.length, line.length);
 		}
+	}
+}
+
+class DiagnosticHelper {
+	private document;
+	private line;
+
+	constructor(document: vscode.TextDocument, line: number) {
+		this.document = document;
+		this.line = line;
+	}
+
+	error(message: string, start: number, end: number) {
+		addDiagnostic(
+			this.document,
+			new vscode.Range(
+				new vscode.Position(this.line, start),
+				new vscode.Position(this.line, end),
+			),
+			message,
+			vscode.DiagnosticSeverity.Error,
+		);
 	}
 }
