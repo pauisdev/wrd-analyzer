@@ -10,8 +10,6 @@ import { Logger } from "./logger";
 import { recomputeOpCodes } from "./op_code";
 import { recomputeValuesFile } from "./values";
 
-export let outputChannel: vscode.OutputChannel;
-
 export function activate(context: vscode.ExtensionContext) {
 	const workspace = vscode.workspace.workspaceFolders?.at(0);
 	if (workspace) {
@@ -61,12 +59,9 @@ export function activate(context: vscode.ExtensionContext) {
 		0,
 	);
 
-	outputChannel = vscode.window.createOutputChannel("WRD Analyzer", {
-		log: true,
-	});
 	const showLogsCommandId = "wrd-analyzer.show-logs";
 	vscode.commands.registerCommand(showLogsCommandId, () => {
-		outputChannel.show();
+		Logger.showConsole();
 	});
 
 	statusBar.text = `$(coffee) WRD`;
