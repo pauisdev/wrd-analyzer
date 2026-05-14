@@ -55,6 +55,24 @@ export function activate(context: vscode.ExtensionContext) {
 		runDiagnosticsIfDocumentIsWrd(currentDocument);
 	}
 
+	const statusBar = vscode.window.createStatusBarItem(
+		vscode.StatusBarAlignment.Right,
+		0,
+	);
+
+	const outputChannel = vscode.window.createOutputChannel(
+		"WRD Analyzer",
+		"wrd",
+	);
+	const showLogsCommandId = "wrd-analyzer.show-logs";
+	vscode.commands.registerCommand(showLogsCommandId, () => {
+		outputChannel.show();
+	});
+
+	statusBar.text = `$(coffee) WRD`;
+	statusBar.command = showLogsCommandId;
+	statusBar.show();
+
 	context.subscriptions.push(
 		vscode.workspace.onDidOpenTextDocument((doc) =>
 			runDiagnosticsIfDocumentIsWrd(doc),
