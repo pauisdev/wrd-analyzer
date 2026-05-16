@@ -91,6 +91,7 @@ export function updateDiagnostics(document: vscode.TextDocument) {
 				);
 				break;
 			}
+			lettersRead += insertedArg.length + 1;
 		}
 	}
 }
