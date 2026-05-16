@@ -67,7 +67,10 @@ export function updateDiagnostics(document: vscode.TextDocument) {
 
 			if ("Type" in expectedArg) {
 				const type = expectedArg.Type;
-				if (type === "string") continue;
+				if (type === "string") {
+					lettersRead += insertedArg.length + 1;
+					continue;
+				}
 
 				if (!isNum(insertedArg)) {
 					helper.error(
@@ -75,12 +78,19 @@ export function updateDiagnostics(document: vscode.TextDocument) {
 						lettersRead,
 						lettersRead + insertedArg.length,
 					);
+					break;
 				}
-
+				lettersRead += insertedArg.length + 1;
 				continue;
 			}
-
-			lettersRead += insertedArg.length + 1;
+			if (!isExpectedOption(insertedArg, expectedArg.Items)) {
+				helper.error(
+					`\`${insertedArg}\` option not found in list \`${expectedArg.Items.join(" | ")}\``,
+					lettersRead,
+					lettersRead + insertedArg.length,
+				);
+				break;
+			}
 		}
 	}
 }
@@ -109,4 +119,11 @@ class DiagnosticHelper {
 
 function isNum(text: string) {
 	return /^[0-9]+$/.test(text);
+}
+
+function isExpectedOption(item: string, items: string[]) {
+	for (let i = 0; i < items.length; i++) {
+		if (items[i] === item) return true;
+	}
+	return false;
 }
