@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import { Logger } from "./logger";
 import { extractArgs, isOpCode } from "./op_code";
 
 let diagnosticsCollection: vscode.DiagnosticCollection;
@@ -94,6 +95,18 @@ export function updateDiagnostics(document: vscode.TextDocument) {
 			lettersRead += insertedArg.length + 1;
 		}
 	}
+
+	const errors = diagnosticsCollection
+		.get(document.uri)
+		?.filter(
+			(diagnostic) => diagnostic.severity === vscode.DiagnosticSeverity.Error,
+		).length;
+	if (errors === undefined) return;
+	if (errors !== 0) {
+		Logger.info(`❗ Found ${errors} errors in ${document.fileName}`);
+		return;
+	}
+	Logger.info(`✅ Found no errors in ${document.fileName}`);
 }
 
 class DiagnosticHelper {
@@ -127,4 +140,12 @@ function isExpectedOption(item: string, items: string[]) {
 		if (items[i] === item) return true;
 	}
 	return false;
+}
+
+function sizeOfCollection(collection: vscode.DiagnosticCollection) {
+	let size = 0;
+	collection.forEach((_) => {
+		size++;
+	});
+	return size;
 }
