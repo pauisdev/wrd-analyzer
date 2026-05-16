@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import { extractArgs, isOpCode } from "./op_code";
 
 let diagnosticsCollection: vscode.DiagnosticCollection;
 
@@ -33,9 +34,11 @@ export function updateDiagnostics(document: vscode.TextDocument) {
 		if (line.trim() !== line) {
 			const extraStartingPadding = line.length - line.trim().length;
 			helper.error("Extra padding should be removed", 0, extraStartingPadding);
+			continue;
 		}
 		if (!line.startsWith("<")) {
 			helper.error("Missing starting '<' bracket", 0, 1);
+			continue;
 		}
 		if (!line.endsWith(">")) {
 			helper.error("Missing ending '>' bracket", line.length, line.length);
