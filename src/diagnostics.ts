@@ -96,17 +96,7 @@ export function updateDiagnostics(document: vscode.TextDocument) {
 		}
 	}
 
-	const errors = diagnosticsCollection
-		.get(document.uri)
-		?.filter(
-			(diagnostic) => diagnostic.severity === vscode.DiagnosticSeverity.Error,
-		).length;
-	if (errors === undefined) return;
-	if (errors !== 0) {
-		Logger.info(`❗ Found ${errors} errors in ${document.fileName}`);
-		return;
-	}
-	Logger.info(`✅ Found no errors in ${document.fileName}`);
+	logAmountOfErrors(document);
 }
 
 class DiagnosticHelper {
@@ -142,10 +132,16 @@ function isExpectedOption(item: string, items: string[]) {
 	return false;
 }
 
-function sizeOfCollection(collection: vscode.DiagnosticCollection) {
-	let size = 0;
-	collection.forEach((_) => {
-		size++;
-	});
-	return size;
+function logAmountOfErrors(document: vscode.TextDocument) {
+	const errors = diagnosticsCollection
+		.get(document.uri)
+		?.filter(
+			(diagnostic) => diagnostic.severity === vscode.DiagnosticSeverity.Error,
+		).length;
+	if (errors === undefined) return;
+	if (errors !== 0) {
+		Logger.info(`❗ Found ${errors} errors in ${document.fileName}`);
+		return;
+	}
+	Logger.info(`✅ Found no errors in ${document.fileName}`);
 }
