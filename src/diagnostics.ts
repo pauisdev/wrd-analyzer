@@ -64,6 +64,22 @@ export function updateDiagnostics(document: vscode.TextDocument) {
 				);
 				break;
 			}
+
+			if ("Type" in expectedArg) {
+				const type = expectedArg.Type;
+				if (type === "string") continue;
+
+				if (!isNum(insertedArg)) {
+					helper.error(
+						"Expected 'number' but found 'string'",
+						lettersRead,
+						lettersRead + insertedArg.length,
+					);
+				}
+
+				continue;
+			}
+
 			lettersRead += insertedArg.length + 1;
 		}
 	}
@@ -89,4 +105,8 @@ class DiagnosticHelper {
 			vscode.DiagnosticSeverity.Error,
 		);
 	}
+}
+
+function isNum(text: string) {
+	return /^[0-9]+$/.test(text);
 }
