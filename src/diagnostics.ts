@@ -47,6 +47,24 @@ export function updateDiagnostics(document: vscode.TextDocument) {
 		const [opCode, ...args] = line.slice(1, -1).split(" ");
 		if (!isOpCode(opCode)) {
 			helper.error("Unknown OP CODE.", 0, opCode.length);
+			continue;
+		}
+		const correctArgs = extractArgs(opCode);
+		const start = opCode.length + 2; // 2 because '<' + the space after the OP CODE
+
+		let lettersRead = start;
+		for (let n = 0; n < args.length; n++) {
+			const insertedArg = args[n];
+			const expectedArg = correctArgs.at(n);
+			if (expectedArg === undefined) {
+				helper.error(
+					"Received more arguments than expected.",
+					lettersRead,
+					line.length,
+				);
+				break;
+			}
+			lettersRead += insertedArg.length + 1;
 		}
 	}
 }
