@@ -3,6 +3,7 @@ A Visual Studio Code extension for adding Intellisense into your WRD files.
 
 ## Features
 - Syntax Highlighting
+- Code diagnostics
 - Jump to definition on JMP and JMN op codes
 - Documentation on hover
 
