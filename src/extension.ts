@@ -1,10 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import * as vscode from "vscode";
+import { setDiagnosticsCollection, updateDiagnostics } from "./diagnostics";
 import completion from "./events/completion";
 import definition from "./events/definition";
 import hover from "./events/hover";
 import { createConfigFiles, readConfigFiles } from "./file";
+import { Logger } from "./logger";
 import { recomputeOpCodes } from "./op_code";
 import { recomputeValuesFile } from "./values";
 
@@ -42,7 +44,39 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	}
 
-	vscode.window.showInformationMessage("WRD Analyzer started!");
+	const diagnosticsCollection =
+		vscode.languages.createDiagnosticCollection("wrd-analyzer");
+	context.subscriptions.push(diagnosticsCollection);
+	setDiagnosticsCollection(diagnosticsCollection);
+
+	const currentDocument = vscode.window.activeTextEditor?.document;
+	if (currentDocument) {
+		runDiagnosticsIfDocumentIsWrd(currentDocument);
+	}
+
+	const statusBar = vscode.window.createStatusBarItem(
+		vscode.StatusBarAlignment.Right,
+		0,
+	);
+
+	const showLogsCommandId = "wrd-analyzer.show-logs";
+	vscode.commands.registerCommand(showLogsCommandId, () => {
+		Logger.showConsole();
+	});
+
+	statusBar.text = `$(coffee) WRD`;
+	statusBar.command = showLogsCommandId;
+	statusBar.tooltip = "Show logs";
+	statusBar.show();
+
+	context.subscriptions.push(
+		vscode.workspace.onDidOpenTextDocument((doc) =>
+			runDiagnosticsIfDocumentIsWrd(doc),
+		),
+		vscode.workspace.onDidChangeTextDocument((event) =>
+			runDiagnosticsIfDocumentIsWrd(event.document),
+		),
+	);
 
 	const createConfigFilesCommandDisposable = vscode.commands.registerCommand(
 		"wrd-analyzer.create-config-files",
@@ -87,6 +121,14 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(definitionDisposable);
 	context.subscriptions.push(completionDisposable);
 	context.subscriptions.push(createConfigFilesCommandDisposable);
+
+	Logger.info("✅ WRD Analyzer is ready.");
+}
+
+function runDiagnosticsIfDocumentIsWrd(document: vscode.TextDocument) {
+	if (document.languageId === "wrd") {
+		updateDiagnostics(document);
+	}
 }
 
 export function deactivate() {}
