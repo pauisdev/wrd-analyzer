@@ -1455,7 +1455,7 @@ WAK:
     - "="
   Arg3:
     Description: The value to modify the wak_label in Arg1 with.
-    Type: any
+    Type: string
     Items:
     - resultExcellent
     - resultGood
@@ -1924,7 +1924,7 @@ IFW:
     - S=
   Arg3:
     Description: The value to compare the wak_label to.
-    Type: any
+    Type: string
     Items:
     - resultExcellent
     - resultGood

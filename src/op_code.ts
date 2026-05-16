@@ -45,7 +45,7 @@ export function getOpCodes() {
 
 type Value =
 	| {
-			Type: "string" | "number" | "any";
+			Type: "string" | "number";
 			Description: string;
 	  }
 	| {
@@ -53,7 +53,7 @@ type Value =
 			Items: string[];
 	  }
 	| {
-			Type: "string" | "number" | "any";
+			Type: "string" | "number";
 			Description: string;
 			Items: string[];
 	  };
