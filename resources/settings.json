@@ -1,0 +1,31 @@
+{
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "wrd.text.normal",
+        "settings": {
+          "foreground": "#fff"
+        }
+      },
+      {
+        "scope": "wrd.text.mind",
+        "settings": {
+          "foreground": "#0080ff"
+        }
+      },
+      {
+        "scope": "wrd.text.strong",
+        "settings": {
+          "foreground": "#ffff01",
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope": "wrd.text.system",
+        "settings": {
+          "foreground": "#008000"
+        }
+      }
+    ]
+  }
+}

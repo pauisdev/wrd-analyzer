@@ -27,6 +27,10 @@
 			{
 				"command": "wrd-analyzer.show-logs",
 				"title": "WRD Analyzer: Show logs"
+			},
+			{
+				"command": "wrd-analyzer.setup-theme",
+				"title": "WRD Analyzer: Setup theme"
 			}
 		],
 		"languages": [
