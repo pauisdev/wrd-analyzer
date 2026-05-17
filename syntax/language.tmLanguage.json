@@ -4,6 +4,69 @@
 	"scopeName": "text.wrd.wrd",
 	"patterns": [
 		{
+			"match": "^(<)(LOC) (.+)(>)$",
+			"captures": {
+				"1": {
+					"name": "constant"
+				},
+				"2": {
+					"name": "keyword"
+				},
+				"3": {
+					"patterns": [
+						{
+							"match": "(<CLT=cltNORMAL>)(.+?)(?=<CLT|$)",
+							"captures": {
+								"1": {
+									"name": "variable"
+								},
+								"2": {
+									"name": "wrd.text.normal"
+								}
+							}
+						},
+						{
+							"match": "(<CLT=cltMIND>)(.+?)(?=<CLT|$)",
+							"captures": {
+								"1": {
+									"name": "variable"
+								},
+								"2": {
+									"name": "wrd.text.mind"
+								}
+							}
+						},
+						{
+							"match": "(<CLT=cltSTRONG>)(.+?)(?=<CLT|$)",
+							"captures": {
+								"1": {
+									"name": "variable"
+								},
+								"2": {
+									"name": "wrd.text.strong"
+								}
+							}
+						},
+						{
+							"match": "(<CLT=cltSYSTEM>)(.+?)(?=<CLT|$)",
+							"captures": {
+								"1": {
+									"name": "variable"
+								},
+								"2": {
+									"name": "wrd.text.system"
+								}
+							}
+						}
+					],
+					"name": "wrd.text.normal"
+				},
+				"4": {
+					"name": "constant"
+				}
+			}
+		},
+		{
 			"match": "(<)([a-zA-Z_]+) (.+?(?=>))(>)",
 			"captures": {
 				"1": {
