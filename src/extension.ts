@@ -8,6 +8,7 @@ import hover from "./events/hover";
 import { createConfigFiles, readConfigFiles } from "./file";
 import { Logger } from "./logger";
 import { recomputeOpCodes } from "./op_code";
+import { copyThemeInto } from "./theme";
 import { recomputeValuesFile } from "./values";
 
 export function activate(context: vscode.ExtensionContext) {
@@ -76,6 +77,24 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.workspace.onDidChangeTextDocument((event) =>
 			runDiagnosticsIfDocumentIsWrd(event.document),
 		),
+		vscode.commands.registerCommand("wrd-analyzer.setup-theme", () => {
+			if (!workspace) {
+				vscode.window.showErrorMessage(
+					"Not inside a workspace. Can't setup theme here.",
+				);
+				return;
+			}
+			const to = path.join(workspace.uri.fsPath, ".vscode", "settings.json");
+			if (fs.existsSync(to)) {
+				vscode.window.showErrorMessage(
+					".vscode/settings.json file already exists. Can't proceed.",
+				);
+				return;
+			}
+			copyThemeInto(context.extension.extensionPath, to);
+			vscode.window.showInformationMessage("Theme setup!");
+			Logger.info("✅ Theme files setup.");
+		}),
 	);
 
 	const createConfigFilesCommandDisposable = vscode.commands.registerCommand(
