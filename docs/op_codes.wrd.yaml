@@ -1037,6 +1037,12 @@ IFF:
     Items:
     - off
     - on
+  Arg4:
+    Description: Type of comparison union (optional)
+    Items:
+    - "&&"
+    - "||"
+  CycleForever: true
 WAK:
   Description: Work ("waaku"). Used to modify the value stored in a wak_label, which may contain a string parameter or a number value.
   Arg1:

@@ -3,14 +3,36 @@ import YAML from "yaml";
 let opCodes: any = {};
 
 export function recomputeOpCodes(newOpCodesFile: string) {
-	opCodes = YAML.parse(newOpCodesFile);
-	for (const opCode in opCodes) {
-		if ("...Args" in opCodes[opCode]) {
+	const futureOpCodes = YAML.parse(newOpCodesFile);
+	for (const opCode in futureOpCodes) {
+		if ("...Args" in futureOpCodes[opCode]) {
 			for (let i = 0; i < 100; i++) {
-				opCodes[opCode][`_Args${i}`] = opCodes[opCode]["...Args"];
+				futureOpCodes[opCode][`_Args${i}`] = futureOpCodes[opCode]["...Args"];
 			}
 		}
+		if ("CycleForever" in futureOpCodes[opCode]) {
+			delete futureOpCodes[opCode].CycleForever;
+			let i = 0;
+			const args = Object.entries(futureOpCodes[opCode]).filter(
+				([k, _v]) => k !== "Description",
+			);
+			const converted = Array(100)
+				.fill(args)
+				.flat()
+				.reduce((accum, [_k, v]) => {
+					if (Object.entries(accum).length >= args.length) {
+						accum[`_Arg${i}`] = v;
+					} else {
+						accum[`Arg${i}`] = v;
+					}
+					i++;
+					return accum;
+				}, {});
+			converted.Description = futureOpCodes[opCode].Description;
+			futureOpCodes[opCode] = converted;
+		}
 	}
+	opCodes = futureOpCodes;
 }
 
 export function isOpCode(code: string) {
