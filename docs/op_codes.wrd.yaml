@@ -2888,7 +2888,7 @@ PAD:
     Type: string
 LOC:
   Description: Display dialogue string in dialogue box
-  Arg1:
+  ...Args:
     Description: Description for Arg1
     Type: string
 BTN:

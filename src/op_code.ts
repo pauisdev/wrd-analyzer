@@ -4,6 +4,13 @@ let opCodes: any = {};
 
 export function recomputeOpCodes(newOpCodesFile: string) {
 	opCodes = YAML.parse(newOpCodesFile);
+	for (const opCode in opCodes) {
+		if ("...Args" in opCodes[opCode]) {
+			for (let i = 0; i < 100; i++) {
+				opCodes[opCode][`_Args${i}`] = opCodes[opCode]["...Args"];
+			}
+		}
+	}
 }
 
 export function isOpCode(code: string) {
@@ -23,6 +30,7 @@ function formatArgs(opCode: string) {
 		.filter(([key, _value]) => key !== "Description")
 		.map(([key, value]) => {
 			const v = value as Value;
+			if (key.startsWith("_")) return "";
 			if ("Type" in v) {
 				return `*@${key}*: \`${v.Type}\` — ${v.Description}`;
 			}
